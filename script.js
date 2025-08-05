@@ -24,7 +24,7 @@ initTabNav();
 
 function initAccordion() {
   const accordionList = document.querySelectorAll(".js-accordion dt");
-  const activeClass = 'ativo'
+  const activeClass = "ativo";
   if (accordionList.length) {
     accordionList[0].classList.add(activeClass);
     accordionList[0].nextElementSibling.classList.add(activeClass);
@@ -40,3 +40,24 @@ function initAccordion() {
 }
 
 initAccordion();
+
+function initScrollSuave() {
+  const linksInternos = document.querySelectorAll('a[href^="#"]');
+
+  function scrollToSection(event) {
+    event.preventDefault();
+    const href = event.currentTarget.getAttribute("href");
+    console.log(href);
+
+    const section = document.querySelector(href);
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+  linksInternos.forEach((item) => {
+    item.addEventListener("click", scrollToSection);
+  });
+}
+
+initScrollSuave()
